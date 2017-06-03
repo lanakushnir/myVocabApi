@@ -15,23 +15,20 @@ class WordsController < ApplicationController
 
   # POST /words
   def create
-    response_json = callApi( params[:word][:text] ) 
-
-    if response_json == '404'
-      word_json = parseParams(word_params)
-    else
-      word_json = parseApi(response_json)
-    end
-
-    existing_word = Word.where(text: word_json["text"]).first
-    if (existing_word)
-      existing_word.list_id = appendWordToList
-
+    existing_word = Word.where(text: params[:word][:text]).first
+    if existing_word
+      existing_word.list_id = getTodayListId
       if existing_word.save
         json = existing_word.as_json
         json["does_exist"] = true 
         render json: json and return
       end
+    end
+
+    if params[:word][:text].present? && params[:word][:lexicalCategory].present? && params[:word][:senses].present? && params[:word][:senses] !=0 
+      word_json = parseParams(word_params)
+    else
+      word_json = callApi( params[:word][:text] ) 
     end
     
     @word = Word.new(word_json)
@@ -81,10 +78,11 @@ class WordsController < ApplicationController
     request.initialize_http_header(header)
     response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == "https") { |http| http.request request }
 
-    if (response.code == '404') 
-      json = response.code
-    else
+    if (response.code != '404') 
       json = JSON.parse(response.body)
+      word_json = parseApi(json)
+    else
+      response
     end
   end
 
@@ -112,26 +110,28 @@ class WordsController < ApplicationController
       end
       word_json["senses"] = senses.select { |s| !s.nil? }
       word_json["etymologies"] = entry_json["etymologies"]
-      word_json["list_id"] = appendWordToList
+      word_json["list_id"] = getTodayListId
     end
     return word_json
   end
 
   def parseParams(params_json)
+    senses = params_json[:senses].select { |s| s[:definition] }
+    return nil unless senses.any?
+
     word_json = {}
-    word_json["text"] = params_json["text"]
-    word_json["lexicalCategory"] = params_json["lexicalCategory"]
-    word_json["needsToBeReviewed"] = 10
-    word_json["pronunciations"] = params_json["pronunciations"].try(:map) { |p| { "audioFile" => p["audioFile"], "phoneticSpelling" => p["phoneticSpelling"] }}
-    word_json["senses"] = params_json["senses"].try(:map) { |p| { "definition" => p["definition"], "example" => p["example"] }}
-    word_json["etymologies"] = params_json["etymologies"]
-    word_json["list_id"] = appendWordToList
+    word_json[:text] = params_json[:text]
+    word_json[:lexicalCategory] = params_json[:lexicalCategory]
+    word_json[:needsToBeReviewed] = 10
+    word_json[:senses] = senses.try(:map) { |s| { 'definition' => s[:definition], 'example' => s[:example] }}
+    word_json[:pronunciations] = params_json[:pronunciations].try(:map) { |p| { 'audioFile' => p[:audioFile], 'phoneticSpelling' => p[:phoneticSpelling] }}
+    word_json[:etymologies] = params_json[:etymologies]
+    word_json[:list_id] = getTodayListId
     word_json
   end
 
-  def appendWordToList()
-    date = Date.today
-    list = List.find_or_create_by(date: date)
+  def getTodayListId()
+    list = List.find_or_create_by(date: Date.today)
     return list.id
   end
 
