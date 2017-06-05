@@ -4,7 +4,7 @@ class Sense
   field :definition, type: String
   field :example, type: String
 
-  embedded_in :word
+  embedded_in :entry
 
   def as_json(options = {})
     options[:except] ||= []

@@ -25,7 +25,7 @@ class WordsController < ApplicationController
       end
     end
 
-    if params[:word][:text].present? && params[:word][:lexicalCategory].present? && params[:word][:senses].present? && params[:word][:senses] !=0 
+    if params[:word][:text].present? && params[:word][:pronunciations].present?
       word_json = parseParams(word_params)
     else
       word_json = callApi( params[:word][:text] ) 
@@ -88,45 +88,50 @@ class WordsController < ApplicationController
 
   def parseApi(api_json)
     word_json = {}
-
-    api_json["results"].each do |result_json|
-      word_json["text"] = result_json["word"]
-      lexical_entry_json = result_json["lexicalEntries"][0]
-      word_json["needsToBeReviewed"] = 10
-      word_json["lexicalCategory"] = lexical_entry_json["lexicalCategory"].downcase
-      word_json["pronunciations"] = lexical_entry_json["pronunciations"].try(:map) { |p| { "audioFile" => p["audioFile"], "phoneticSpelling" => p["phoneticSpelling"] }}
-
-      entry_json = lexical_entry_json["entries"][0]
-      
-      senses = entry_json["senses"].map do |s|
-        sense = {}
-        if s["definitions"].blank?
-          next
-        else
-          sense["definition"] = s["definitions"][0] 
+    api_json['results'].each do |result_json|
+      word_json['text'] = result_json['word']
+      word_json['needsToBeReviewed'] = 10
+      word_json['pronunciations'] = result_json['lexicalEntries'][0]['pronunciations'].try(:map) { |p| { 'audioFile' => p['audioFile'], 'phoneticSpelling' => p['phoneticSpelling'] }}
+      entries = result_json['lexicalEntries'].map do |lexical_entry_json|
+        word_entry_json = {}
+        word_entry_json['lexicalCategory'] = lexical_entry_json['lexicalCategory'].downcase
+        lexical_entry_json['entries'].each do |entry_json|
+          word_entry_json['etymologies'] = entry_json['etymologies']
+          senses = entry_json['senses'].map do |s|
+            sense = {}
+            if s['definitions'].blank?
+              next
+            else
+              sense['definition'] = s['definitions'][0]
+            end
+            sense['example'] = s['examples'][0]["text"] unless s['examples'].blank?
+            sense
+          end
+          word_entry_json['senses'] = senses.select { |s| !s.nil? }
         end
-        sense["example"] = s["examples"][0]["text"] unless s["examples"].blank?
-        sense
+        word_entry_json
       end
-      word_json["senses"] = senses.select { |s| !s.nil? }
-      word_json["etymologies"] = entry_json["etymologies"]
-      word_json["list_id"] = getTodayListId
+      word_json['entries'] = entries.select { |e| !e.nil? }
+      word_json['list_id'] = getTodayListId
     end
     return word_json
   end
 
   def parseParams(params_json)
-    senses = params_json[:senses].select { |s| s[:definition] }
-    return nil unless senses.any?
+    pronunciations = params_json['pronunciations'].select { |p| p['phoneticSpelling'] }
+    entries = params_json['entries'].select do |entry| 
+      senses = entry['senses']
+      senses.select! { |s| s['definition'] }
+      entry['lexicalCategory'] && senses.count > 0
+    end
+    return nil unless pronunciations && entries
 
     word_json = {}
-    word_json[:text] = params_json[:text]
-    word_json[:lexicalCategory] = params_json[:lexicalCategory]
-    word_json[:needsToBeReviewed] = 10
-    word_json[:senses] = senses.try(:map) { |s| { 'definition' => s[:definition], 'example' => s[:example] }}
-    word_json[:pronunciations] = params_json[:pronunciations].try(:map) { |p| { 'audioFile' => p[:audioFile], 'phoneticSpelling' => p[:phoneticSpelling] }}
-    word_json[:etymologies] = params_json[:etymologies]
-    word_json[:list_id] = getTodayListId
+    word_json['text'] = params_json['text']
+    word_json['needsToBeReviewed'] = 10
+    word_json['pronunciations'] = pronunciations
+    word_json['entries'] = entries
+    word_json['list_id'] = getTodayListId
     word_json
   end
 
@@ -143,8 +148,8 @@ class WordsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def word_params
-      params.require(:word).permit(:id, :list_id, :text, :lexicalCategory, :needsToBeReviewed, etymologies: [],
+      params.require(:word).permit(:id, :list_id, :text, :needsToBeReviewed, 
                                     pronunciations: [ :id, :phoneticSpelling, :audioFile], 
-                                    senses: [ :id, :definition, :example ])
+                                    entries: [ :id, :lexicalCategory, :etymologies, senses: [ :id, :definition, :example ]])
     end
 end

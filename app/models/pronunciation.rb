@@ -1,8 +1,8 @@
 class Pronunciation
   include Mongoid::Document
 
-  field :phoneticSpelling, type: String
   field :audioFile, type: String
+  field :phoneticSpelling, type: String
 
   embedded_in :word
 
