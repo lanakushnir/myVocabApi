@@ -42,15 +42,7 @@ class WordsController < ApplicationController
 
   # PATCH/PUT /words/1
   def update
-    update_params = word_params
-    update_params["senses"].each do |s|
-      s.delete("id") if s["id"].nil?
-    end
-    update_params["pronunciations"].each do |p|
-      p.delete("id") if p["id"].nil?
-    end
-
-    if @word.update(update_params)
+    if @word.update(word_params)
         render json: @word and return
     end
     render json: @word.errors, status: :unprocessable_entity and return
@@ -117,7 +109,8 @@ class WordsController < ApplicationController
     return word_json
   end
 
-  def parseParams(params_json)
+  def parseParams(params)
+    params_json = params.to_h
     pronunciations = params_json['pronunciations'].select { |p| p['phoneticSpelling'] }
     entries = params_json['entries'].select do |entry| 
       senses = entry['senses']
@@ -141,6 +134,15 @@ class WordsController < ApplicationController
   end
 
   private
+    # actionpack/lib/action_controller/metal/strong_parameters.rb
+    def to_h
+      if permitted?
+        @parameters.to_h
+      else
+        slice(*self.class.always_permitted_parameters).permit!.to_h
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_word
       @word = Word.where(text: params[:text]).first
@@ -148,8 +150,19 @@ class WordsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def word_params
-      params.require(:word).permit(:id, :list_id, :text, :needsToBeReviewed, 
+      parameters = params.require(:word).permit(:id, :list_id, :text, :needsToBeReviewed,
                                     pronunciations: [ :id, :phoneticSpelling, :audioFile], 
-                                    entries: [ :id, :lexicalCategory, :etymologies, senses: [ :id, :definition, :example ]])
+                                    entries: [ :id, :lexicalCategory, etymologies: [], senses: [ :id, :definition, :example ]])
+      parameters["entries"].each do |e|
+        e.delete("id") if e["id"].nil?
+        e["senses"].each do |s|
+          s.delete("id") if s["id"].nil?
+        end
+      end
+      parameters["pronunciations"].each do |p|
+        p.delete("id") if p["id"].nil?
+      end
+      parameters
     end
 end
+

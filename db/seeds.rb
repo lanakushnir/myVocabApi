@@ -15,12 +15,15 @@ lists_json.each do |list_json|
 	list = List.new({ date: list_json["date"] })
 
 	list_json["words"].each do |word_json|
-		w = Word.new({ text: word_json["text"], lexicalCategory: word_json["lexicalCategory"], etymologies: word_json["etymologies"], needsToBeReviewed: word_json["needsToBeReviewed"] })
+		w = Word.new({ text: word_json["text"], needsToBeReviewed: word_json["needsToBeReviewed"] })
 		word_json["pronunciations"].each do |pronunciation_json|
 			w.pronunciations.build({ phoneticSpelling: pronunciation_json["phoneticSpelling"], audioFile: pronunciation_json["audioFile"] })
 		end
-		word_json["senses"].each do |sense_json|
-			w.senses.build({ definition: sense_json["definition"], example: sense_json["example"] })
+		word_json["entries"].each do |entry_json|
+			entry = w.entries.build({ lexicalCategory: entry_json["lexicalCategory"], etymologies: entry_json["etymologies"]})
+			entry_json["senses"].each do |sense_json|
+				entry.senses.build({ definition: sense_json["definition"], example: sense_json["example"] })
+			end
 		end
 		w.save
 		list.words << w

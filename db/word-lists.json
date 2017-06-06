@@ -4,7 +4,7 @@
 		"words": [
 			{
 				"text": "extenuate",
-				"lexicalCategory": "Verb",
+				"needsToBeReviewed": 10,
 				"pronunciations": [
 				    {
 				      	"audioFile": "http://audio.oxforddictionaries.com/en/mp3/extenuate_gb_1_8.mp3",
@@ -14,24 +14,28 @@
 				      	"phoneticSpelling": "ɛkˈstɛnjʊeɪt"
 				    }
 				],
-				"etymologies": [
-					"late Middle English (in the sense ‘make thin’): from Latin extenuat- ‘made thin’, from the verb extenuare (based on tenuis ‘thin’)"
-				],
-				"needsToBeReviewed": 10,
-				"senses": [
+				"entries": [
 					{
-				  		"definition": "(of a factor or situation) acting in mitigation to lessen the seriousness of guilt or an offence",
-				  		"example": "hunger and poverty are not treated by the courts as extenuating circumstances"
-					},
-					{
-				  		"definition": "make (someone) thin",
-				  		"example": "drawings of extenuated figures"
+						"lexicalCategory": "Verb",
+						"etymologies": [
+							"late Middle English (in the sense ‘make thin’): from Latin extenuat- ‘made thin’, from the verb extenuare (based on tenuis ‘thin’)"
+						],
+						"senses": [
+							{
+						  		"definition": "(of a factor or situation) acting in mitigation to lessen the seriousness of guilt or an offence",
+						  		"example": "hunger and poverty are not treated by the courts as extenuating circumstances"
+							},
+							{
+						  		"definition": "make (someone) thin",
+						  		"example": "drawings of extenuated figures"
+							}
+						]
 					}
 				]
 			}, 
 			{
 				"text": "divulge", 
-				"lexicalCategory": "Verb",
+				"needsToBeReviewed": 10,
 				"pronunciations": [
 					{
 						"phoneticSpelling": "dɪˈvʌldʒ"
@@ -41,40 +45,48 @@
 						"audioFile": "http://audio.oxforddictionaries.com/en/mp3/divulge_gb_1.mp3"
 					}
 				],
-				"etymologies": [
-					"late Middle English (in the sense ‘announce publicly’): from Latin divulgare, from di- ‘widely’ + vulgare ‘publish’ (from vulgus ‘common people’)"
-				],
-				"needsToBeReviewed": 10,
-				"senses": [
+				"entries": [
 					{
-						"definition": "make known (private or sensitive information)",
-						"example": "I do not want to divulge my plans at the moment"
+						"lexicalCategory": "Verb",
+						"etymologies": [
+							"late Middle English (in the sense ‘announce publicly’): from Latin divulgare, from di- ‘widely’ + vulgare ‘publish’ (from vulgus ‘common people’)"
+						],
+						"senses": [
+							{
+								"definition": "make known (private or sensitive information)",
+								"example": "I do not want to divulge my plans at the moment"
+							}
+						]
 					}
-				]			
+				]
 			}, 
 			{
 				"text": "persistence",
-				"lexicalCategory": "Noun",
+				"needsToBeReviewed": 10,
 				"pronunciations": [
 					{
 						"phoneticSpelling": "pəˈsɪst(ə)ns",
 						"audioFile": "http://audio.oxforddictionaries.com/en/mp3/persistence_gb_1.mp3"
 					}
 				],
-				"etymologies": [
+				"entries": [
+					{
+						"lexicalCategory": "Noun",
+						"etymologies": [
 			        "mid 16th century: from French persistance, from the verb persister; influenced in spelling by Latin persistent- ‘continuing steadfastly’"
-				],	
-				"needsToBeReviewed": 10,
-				"senses": [
-					{
-						"definition": "the fact of continuing in an opinion or course of action in spite of difficulty or opposition",
-			            "example": "Cardiff's persistence was rewarded with a try"
-					},
-					{
-						"definition": "the continued or prolonged existence of something",
-						"example": "the persistence of huge environmental problems"
+						],
+						"senses": [
+							{
+								"definition": "the fact of continuing in an opinion or course of action in spite of difficulty or opposition",
+					            "example": "Cardiff's persistence was rewarded with a try"
+							},
+							{
+								"definition": "the continued or prolonged existence of something",
+								"example": "the persistence of huge environmental problems"
+							}
+						]			
 					}
-				]			
+				]
 			}
 		]
 	},
@@ -83,66 +95,78 @@
 		"words": [
 			{
 				"text": "stravage",
-				"lexicalCategory": "Verb",
+				"needsToBeReviewed": 10,
 				"pronunciations": [
 				    {
-				      	"audioFile": "http://audio.oxforddictionaries.com/en/mp3/stravaig_gb_1.mp3",
-				      	"phoneticSpelling": "strəˈveɪɡ"
+			      	"audioFile": "http://audio.oxforddictionaries.com/en/mp3/stravaig_gb_1.mp3",
+			      	"phoneticSpelling": "strəˈveɪɡ"
 				    }
 				],
-				"etymologies": [
-					"late 18th century: probably a shortening of obsolete extravage ‘digress, ramble’"
-				],
-				"needsToBeReviewed": 10,
-				"senses": [
+				"entries": [
 					{
-				  		"definition": "wander about aimlessly",
-				  		"example": "stravaiging about the roads"
+						"lexicalCategory": "Verb",
+						"etymologies": [
+							"late 18th century: probably a shortening of obsolete extravage ‘digress, ramble’"
+						],
+						"senses": [
+							{
+					  		"definition": "wander about aimlessly",
+					  		"example": "stravaiging about the roads"
+							}
+						]			
 					}
-				]			
+				]
 			}, 
 			{
 				"text": "newspeak", 
-				"lexicalCategory": "Noun",
+				"needsToBeReviewed": 10,
 				"pronunciations": [
 					{
 						"phoneticSpelling": "ˈnjuːspiːk",
 						"audioFile": "http://audio.oxforddictionaries.com/en/mp3/newspeak_gb_1.mp3"
 					}
 				],
-				"etymologies": [
-					"1949: the name of an artificial official language in George Orwell's Nineteen Eighty-Four"
-				],
-				"needsToBeReviewed": 10,
-				"senses": [
+				"entries": [
 					{
-						"definition": "ambiguous euphemistic language used chiefly in political propaganda",
-						"example": "‘deterrence’ is just Newspeak for plain old threatening"
+						"lexicalCategory": "Noun",
+						"etymologies": [
+							"1949: the name of an artificial official language in George Orwell's Nineteen Eighty-Four"
+						],
+						"senses": [
+							{
+								"definition": "ambiguous euphemistic language used chiefly in political propaganda",
+								"example": "‘deterrence’ is just Newspeak for plain old threatening"
+							}
+						]			
 					}
-				]			
+				]
 			}, 
 			{
 				"text": "portmanteau",
-				"lexicalCategory": "Noun",
+				"needsToBeReviewed": 10,
 				"pronunciations": [
 					{
 						"phoneticSpelling": "pɔːtˈmantəʊ",
 						"audioFile": "http://audio.oxforddictionaries.com/en/mp3/portmanteau_gb_1.mp3"
 					}
 				],
-				"etymologies": [
+				"entries": [
+					{
+						"lexicalCategory": "Noun",
+						"etymologies": [
 			        "mid 16th century: from French portemanteau, from porter ‘carry’ + manteau ‘mantle’"
-				],	
-				"needsToBeReviewed": 10,
-				"senses": [
-					{
-						"definition": "a large travelling bag, typically made of stiff leather and opening into two equal parts."
-					},
-					{
-						"definition": "a word blending the sounds and combining the meanings of two others, for example motel or brunch",
-						"example": "podcast is a portmanteau, a made-up word coined from a combination of the words iPod and broadcast"
+						],	
+						"senses": [
+							{
+								"definition": "a large travelling bag, typically made of stiff leather and opening into two equal parts."
+							},
+							{
+								"definition": "a word blending the sounds and combining the meanings of two others, for example motel or brunch",
+								"example": "podcast is a portmanteau, a made-up word coined from a combination of the words iPod and broadcast"
+							}
+						]
 					}
-				]			
+				]
 			}
 		]
 	},
@@ -151,26 +175,30 @@
 		"words": [
 			{
 				"text": "middlescent",
-				"lexicalCategory": "Adjective",
+				"needsToBeReviewed": 10,
 				"pronunciations": [
 				    {
 				      	"audioFile": "http://audio.oxforddictionaries.com/en/mp3/middlescent_gb_1.mp3",
 				      	"phoneticSpelling": "ˌmɪdəˈlɛs(ə)nt"
 				    }
 				],
-				"etymologies": [
-					"1960s: blend of middle + adolescent"
-				],
-				"needsToBeReviewed": 10,
-				"senses": [
+				"entries": [
 					{
-				  		"definition": "middle-aged, but typically still maintaining the interests and activities of younger people."
+						"lexicalCategory": "Adjective",
+						"etymologies": [
+							"1960s: blend of middle + adolescent"
+						],
+						"senses": [
+							{
+				  			"definition": "middle-aged, but typically still maintaining the interests and activities of younger people."
+							}
+						]
 					}
-				]			
+				]
 			}, 
 			{
 				"text": "fusillade", 
-				"lexicalCategory": "Noun",
+				"needsToBeReviewed": 10,
 				"pronunciations": [
 					{
 						"phoneticSpelling": "ˌfjuːzɪˈleɪd",
@@ -180,44 +208,52 @@
 						"phoneticSpelling": "ˌfjuːzɪˈlɑːd"
 					}
 				],
-				"etymologies": [
-					"early 19th century: from French, from fusiller ‘to shoot’, from fusil (see fusil)"
-				],
-				"needsToBeReviewed": 10,
-				"senses": [
+				"entries": [
 					{
-						"definition": "a series of shots fired or missiles thrown all at the same time or in quick succession",
-						"example": "marchers had to dodge a fusillade of missiles"
+						"lexicalCategory": "Noun",
+						"etymologies": [
+							"early 19th century: from French, from fusiller ‘to shoot’, from fusil (see fusil)"
+						],
+						"senses": [
+							{
+								"definition": "a series of shots fired or missiles thrown all at the same time or in quick succession",
+								"example": "marchers had to dodge a fusillade of missiles"
+							}
+						]
 					}
-				]			
+				]
 			}, 
 			{
 				"text": "sherbet",
-				"lexicalCategory": "Noun",
+				"needsToBeReviewed": 10,
 				"pronunciations": [
 					{
 						"phoneticSpelling": "ˈʃəːbət",
 						"audioFile": "http://audio.oxforddictionaries.com/en/mp3/sherbet_gb_1_8.mp3"
 					}
 				],
-				"etymologies": [
+				"entries": [
+					{
+						"lexicalCategory": "Noun",
+						"etymologies": [
 			        "early 17th century: from Turkish şerbet, Persian šerbet, from Arabic šarba ‘drink’, from šariba ‘to drink’. Compare with syrup"
-				],	
-				"needsToBeReviewed": 10,
-				"senses": [
-					{
-						"definition": "a flavoured sweet effervescent powder eaten alone or made into a drink",
-						"example": "disks of fruit-flavoured rice paper filled with sherbet"
-					},
-					{
-						"definition": "(especially in Arab countries) a cooling drink of sweet diluted fruit juices",
-						"example": "the ladies floated around in diaphanous silks and served sherbet and other refreshments"
-					},
-					{
-						"definition": "beer",
-						"example": "I went down the local pub for a few sherbets"
+						],	
+						"senses": [
+							{
+								"definition": "a flavoured sweet effervescent powder eaten alone or made into a drink",
+								"example": "disks of fruit-flavoured rice paper filled with sherbet"
+							},
+							{
+								"definition": "(especially in Arab countries) a cooling drink of sweet diluted fruit juices",
+								"example": "the ladies floated around in diaphanous silks and served sherbet and other refreshments"
+							},
+							{
+								"definition": "beer",
+								"example": "I went down the local pub for a few sherbets"
+							}
+						]	
 					}
-				]			
+				]
 			}
 		]
 	}
